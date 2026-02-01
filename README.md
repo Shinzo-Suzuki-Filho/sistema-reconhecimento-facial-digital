@@ -49,4 +49,4 @@ Este projeto foi construído sob os pilares da LGPD. Todos os dados biométricos
 
 ---
 
-**Desenvolvido por Antigravity AI - Soluções de Elite.**
+**Desenvolvido por Shinzo Suzuki Full Stack Developer - Soluções de Elite.**
