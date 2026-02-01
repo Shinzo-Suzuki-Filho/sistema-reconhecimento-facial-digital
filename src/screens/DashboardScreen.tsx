@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Container } from '../components/Core';
 import { theme } from '../theme';
-import { Search, MapPin, AlertTriangle, ScanLine } from 'lucide-react-native';
+import { MapPin, AlertTriangle, ScanLine } from 'lucide-react-native';
 
 const FORAGIDOS_MOCK = [
   { id: '1', nome: 'CARLOS "SOMBRA" SILVA', crime: 'TRÁFICO E HOMICÍDIO', periculosidade: 'ALTA', local: 'MACEIÓ, AL' },

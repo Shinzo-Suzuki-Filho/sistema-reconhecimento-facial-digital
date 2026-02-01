@@ -19,25 +19,29 @@
 
 ## 📦 Como Instalar e Testar
 
-1.  **Clone o repositório**:
-    ```bash
-    git clone https://github.com/Shinzo-Suzuki-Filho/sistema-reconhecimento-facial-digital.git
-    cd sistema-reconhecimento-facial-digital
-    ```
+1. **Clone o repositório**:
 
-2.  **Instale as dependências**:
-    ```bash
-    npm install
-    ```
+   ```bash
+   git clone https://github.com/Shinzo-Suzuki-Filho/sistema-reconhecimento-facial-digital.git
+   cd sistema-reconhecimento-facial-digital
+   ```
 
-3.  **Inicie o ambiente**:
-    ```bash
-    npx expo start
-    ```
+2. **Instale as dependências**:
 
-4.  **Visualize no seu dispositivo**:
-    *   Baixe o aplicativo **Expo Go** na Play Store ou App Store.
-    *   Escaneie o QR Code gerado no terminal.
+   ```bash
+   npm install
+   ```
+
+3. **Inicie o ambiente**:
+
+   ```bash
+   npx expo start
+   ```
+
+4. **Visualize no seu dispositivo**:
+
+   - Baixe o aplicativo **Expo Go** na Play Store ou App Store.
+   - Escaneie o QR Code gerado no terminal.
 
 ## 🛡️ Segurança e Privacidade
 
@@ -45,5 +49,4 @@ Este projeto foi construído sob os pilares da LGPD. Todos os dados biométricos
 
 ---
 
-**Desenvolvido por Shinzo Suzuki Desenvolvedor Full Stack - Soluções de Elite.**
-   
+**Desenvolvido por Antigravity AI - Soluções de Elite.**
