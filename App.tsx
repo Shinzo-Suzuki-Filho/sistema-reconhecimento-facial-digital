@@ -8,6 +8,7 @@ import { ScannerScreen } from './src/screens/ScannerScreen';
 export default function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [currentScreen, setCurrentScreen] = useState<'LOGIN' | 'DASHBOARD' | 'SCANNER'>('LOGIN');
+  const [scannerMode, setScannerMode] = useState<'BIOMÉTRICO' | 'DIGITAL'>('BIOMÉTRICO');
 
   const handleLogin = () => {
     setAuthenticated(true);
@@ -36,7 +37,8 @@ export default function App() {
     // Aqui você pode adicionar lógica para dar scroll para o topo ou atualizar dados
   };
 
-  const navigateToScanner = () => {
+  const navigateToScanner = (mode: 'BIOMÉTRICO' | 'DIGITAL') => {
+    setScannerMode(mode);
     setCurrentScreen('SCANNER');
   };
 
@@ -54,12 +56,11 @@ export default function App() {
         <DashboardScreen 
             onScan={navigateToScanner} 
             onLogout={handleLogout}
-            onHome={handleHome}
         />
       )}
 
       {currentScreen === 'SCANNER' && (
-        <ScannerScreen onBack={navigateToDashboard} />
+        <ScannerScreen onBack={navigateToDashboard} mode={scannerMode} />
       )}
     </View>
   );

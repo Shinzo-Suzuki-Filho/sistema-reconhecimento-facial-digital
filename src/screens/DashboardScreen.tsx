@@ -11,12 +11,11 @@ const FORAGIDOS_MOCK = [
 ];
 
 interface DashboardProps {
-  onScan: () => void;
+  onScan: (mode: 'BIOMÉTRICO' | 'DIGITAL') => void;
   onLogout: () => void;
-  onHome: () => void;
 }
 
-export const DashboardScreen = ({ onScan, onLogout, onHome }: DashboardProps) => {
+export const DashboardScreen = ({ onScan, onLogout }: DashboardProps) => {
   return (
     <Container style={{ paddingBottom: 0 }}>
       <View style={styles.header}>
@@ -31,17 +30,12 @@ export const DashboardScreen = ({ onScan, onLogout, onHome }: DashboardProps) =>
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.controlsGrid}>
-            <TouchableOpacity style={styles.controlButton} onPress={onHome}>
-                <Home color={theme.colors.primary} size={28} />
-                <Text style={styles.controlLabel}>INÍCIO</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.controlButton} onPress={onScan}>
+            <TouchableOpacity style={styles.controlButton} onPress={() => onScan('BIOMÉTRICO')}>
                 <Eye color={theme.colors.accent} size={28} />
                 <Text style={styles.controlLabel}>BIOMÉTRICO</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.controlButton} onPress={onScan}>
+            <TouchableOpacity style={styles.controlButton} onPress={() => onScan('DIGITAL')}>
                 <Fingerprint color={theme.colors.accent} size={28} />
                 <Text style={styles.controlLabel}>DIGITAL</Text>
             </TouchableOpacity>
