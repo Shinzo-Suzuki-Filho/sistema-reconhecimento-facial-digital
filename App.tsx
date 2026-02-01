@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, StatusBar } from 'react-native';
+import { View, StyleSheet, StatusBar, Alert } from 'react-native';
 import { theme } from './src/theme';
 import { LoginScreen } from './src/screens/LoginScreen';
 import { DashboardScreen } from './src/screens/DashboardScreen';
@@ -12,6 +12,28 @@ export default function App() {
   const handleLogin = () => {
     setAuthenticated(true);
     setCurrentScreen('DASHBOARD');
+  };
+
+  const handleLogout = () => {
+    Alert.alert(
+        "Logout de Elite",
+        "Encerrando sessão segura do Guardian Eye...",
+        [
+            { 
+                text: "Confirmar", 
+                onPress: () => {
+                    setAuthenticated(false);
+                    setCurrentScreen('LOGIN');
+                }
+            },
+            { text: "Cancelar", style: "cancel" }
+        ]
+    );
+  };
+
+  const handleHome = () => {
+    setCurrentScreen('DASHBOARD');
+    // Aqui você pode adicionar lógica para dar scroll para o topo ou atualizar dados
   };
 
   const navigateToScanner = () => {
@@ -29,7 +51,11 @@ export default function App() {
       {currentScreen === 'LOGIN' && <LoginScreen onLogin={handleLogin} />}
       
       {currentScreen === 'DASHBOARD' && (
-        <DashboardScreen onScan={navigateToScanner} />
+        <DashboardScreen 
+            onScan={navigateToScanner} 
+            onLogout={handleLogout}
+            onHome={handleHome}
+        />
       )}
 
       {currentScreen === 'SCANNER' && (

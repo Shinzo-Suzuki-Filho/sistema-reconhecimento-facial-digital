@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { Container } from '../components/Core';
 import { theme } from '../theme';
-import { MapPin, AlertTriangle, ScanLine } from 'lucide-react-native';
+import { MapPin, AlertTriangle, ScanLine, Home, Fingerprint, LogOut, Eye } from 'lucide-react-native';
 
 const FORAGIDOS_MOCK = [
   { id: '1', nome: 'CARLOS "SOMBRA" SILVA', crime: 'TRÁFICO E HOMICÍDIO', periculosidade: 'ALTA', local: 'MACEIÓ, AL' },
@@ -10,38 +10,63 @@ const FORAGIDOS_MOCK = [
   { id: '3', nome: 'MARCOS "FÊNIX" OLIVEIRA', crime: 'ROUBO A BANCO', periculosidade: 'MÁXIMA', local: 'RECIFE, PE' },
 ];
 
-export const DashboardScreen = ({ onScan }: { onScan: () => void }) => {
+interface DashboardProps {
+  onScan: () => void;
+  onLogout: () => void;
+  onHome: () => void;
+}
+
+export const DashboardScreen = ({ onScan, onLogout, onHome }: DashboardProps) => {
   return (
-    <Container>
+    <Container style={{ paddingBottom: 0 }}>
       <View style={styles.header}>
         <View>
           <Text style={styles.greeting}>Olá, Agente</Text>
           <Text style={styles.status}>SISTEMA 100% OPERACIONAL</Text>
         </View>
-        <TouchableOpacity style={styles.scanButton} onPress={onScan}>
-            <ScanLine color={theme.colors.accent} size={28} />
-            <Text style={styles.scanButtonText}>SCAN</Text>
+        <TouchableOpacity style={styles.headerLogout} onPress={onLogout}>
+            <LogOut color={theme.colors.error} size={20} />
         </TouchableOpacity>
       </View>
 
-      <View style={styles.statsContainer}>
-        <View style={styles.statBox}>
-            <Text style={styles.statValue}>124</Text>
-            <Text style={styles.statLabel}>PROCURADOS</Text>
-        </View>
-        <View style={styles.statBox}>
-            <Text style={[styles.statValue, { color: theme.colors.success }]}>12</Text>
-            <Text style={styles.statLabel}>CAPTURAS/MÊS</Text>
-        </View>
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.controlsGrid}>
+            <TouchableOpacity style={styles.controlButton} onPress={onHome}>
+                <Home color={theme.colors.primary} size={28} />
+                <Text style={styles.controlLabel}>INÍCIO</Text>
+            </TouchableOpacity>
 
-      <Text style={styles.sectionTitle}>ALERTAS EM TEMPO REAL</Text>
+            <TouchableOpacity style={styles.controlButton} onPress={onScan}>
+                <Eye color={theme.colors.accent} size={28} />
+                <Text style={styles.controlLabel}>BIOMÉTRICO</Text>
+            </TouchableOpacity>
 
-      <FlatList 
-        data={FORAGIDOS_MOCK}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
+            <TouchableOpacity style={styles.controlButton} onPress={onScan}>
+                <Fingerprint color={theme.colors.accent} size={28} />
+                <Text style={styles.controlLabel}>DIGITAL</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.controlButton} onPress={onLogout}>
+                <LogOut color={theme.colors.secondary} size={28} />
+                <Text style={styles.controlLabel}>LOGIN</Text>
+            </TouchableOpacity>
+        </View>
+
+        <View style={styles.statsContainer}>
+            <View style={styles.statBox}>
+                <Text style={styles.statValue}>124</Text>
+                <Text style={styles.statLabel}>PROCURADOS</Text>
+            </View>
+            <View style={styles.statBox}>
+                <Text style={[styles.statValue, { color: theme.colors.success }]}>12</Text>
+                <Text style={styles.statLabel}>CAPTURAS/MÊS</Text>
+            </View>
+        </View>
+
+        <Text style={styles.sectionTitle}>ALERTAS EM TEMPO REAL</Text>
+
+        {FORAGIDOS_MOCK.map((item) => (
+          <View key={item.id} style={styles.card}>
             <View style={styles.cardIndicator} />
             <View style={styles.cardContent}>
               <View style={styles.cardHeader}>
@@ -60,9 +85,9 @@ export const DashboardScreen = ({ onScan }: { onScan: () => void }) => {
                 <AlertTriangle size={20} color={theme.colors.primary} />
             </TouchableOpacity>
           </View>
-        )}
-        contentContainerStyle={styles.list}
-      />
+        ))}
+        <View style={{ height: 40 }} />
+      </ScrollView>
     </Container>
   );
 };
@@ -86,19 +111,36 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     letterSpacing: 1,
   },
-  scanButton: {
-    backgroundColor: theme.colors.surface,
+  headerLogout: {
     padding: theme.spacing.sm,
+  },
+  controlsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginBottom: theme.spacing.xl,
+  },
+  controlButton: {
+    width: '48%',
+    backgroundColor: theme.colors.surface,
+    padding: theme.spacing.lg,
     borderRadius: theme.borderRadius.md,
     alignItems: 'center',
+    marginBottom: theme.spacing.md,
     borderWidth: 1,
-    borderColor: theme.colors.accent,
+    borderColor: theme.colors.border,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 8,
   },
-  scanButtonText: {
-    color: theme.colors.accent,
-    fontSize: 8,
+  controlLabel: {
+    color: theme.colors.text,
+    fontSize: 10,
     fontWeight: '900',
-    marginTop: 2,
+    marginTop: 8,
+    letterSpacing: 1,
   },
   statsContainer: {
     flexDirection: 'row',
@@ -131,9 +173,6 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     letterSpacing: 2,
     marginBottom: theme.spacing.md,
-  },
-  list: {
-    paddingBottom: theme.spacing.lg,
   },
   card: {
     backgroundColor: theme.colors.surface,
