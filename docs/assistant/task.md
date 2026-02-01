@@ -1,0 +1,38 @@
+# Tarefas para o Aplicativo de Elite de Segurança Pública
+
+- [x] Planejamento e Design inicial
+    - [x] Criar a identidade visual e o logotipo de ELITE
+    - [x] Definir a arquitetura do banco de dados (Supabase)
+- [x] Configuração do Ambiente
+    - [x] Inicializar o projeto React Native (Expo)
+    - [x] Configurar pastas e estrutura do projeto
+    - [x] Upgrade para SDK 54 (Compatibilidade Expo Go)
+    - [x] Gerar assets padrão (splash, icon)
+- [x] Implementação do Backend (Mock/Supabase)
+    - [x] Criar tabelas para informações de foragidos
+    - [x] Implementar notificações em tempo real
+- [x] Desenvolvimento do Aplicativo (Frontend)
+    - [x] Tela de Login com segurança de ponta
+    - [x] Interface de Escaneamento de Íris e Digital (Simulado/Interface)
+    - [x] Dashboard de Foragidos com busca em tempo real
+    - [x] Detalhes do Foragido e Sincronização com a Central
+- [x] Segurança e LGPD
+    - [x] Implementar criptografia de senhas
+    - [x] Implementar biometria ocular e digital
+- [x] Testes e Verificação
+    - [x] Testar responsividade em diferentes telas
+    - [x] Verificar fluxos de dados em tempo real
+- [x] Finalização e Deploy
+    - [x] Criar README.md detalhado em Português
+    - [x] Upload para o GitHub
+- [x] Refinamento de ELITE
+    - [x] Alinhamento de Versões de Dependências (SDK 54)
+    - [x] Estabilização de Ambiente (React 19 / RN 0.81)
+    - [x] Correção Final de Lints e TypeScript (Zero Erros)
+- [x] Aprimoramento de Navegação Operacional
+    - [x] Adicionar botões: Scanner Biométrico, Scanner Digital, Login
+    - [x] Implementar transições entre estados operacionais
+- [x] Lógica de Assertividade e Scanner de Toque
+    - [x] Implementar faixas de precisão (80-100% e 0-79%)
+    - [x] Criar interface de escaneamento digital por touchscreen
+    - [x] Adicionar alertas visuais de "PRISÃO" e "LIBERAÇÃO"
